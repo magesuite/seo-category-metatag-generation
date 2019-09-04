@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magesuite" translate="label" sortOrder="300">
+            <label>MageSuite</label>
+        </tab>
+        <section id="seo" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>SEO</label>
+            <tab>magesuite</tab>
+            <resource>MageSuite_SeoCategoryMetatagGeneration::configuration</resource>
+            <group id="category_metatag_generation" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Metatag Generation</label>
+                <field id="is_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Is Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[By enabling this option, category "Meta Title" and "Meta Description" will be generated from given patterns unless the relevant fields in the categories are filled in.]]>
+                    </comment>
+                </field>
+                <field id="meta_title" translate="label" type="text" sortOrder="30" showInDefault="1">
+                    <label>Meta Title</label>
+                    <comment>
+                        <![CDATA[Please provide a pattern which will be used to generate Meta Title if this field in category is empty. You can use directives<br/>{{category_name}} - returns category name<br/>{{filter_values}} - returns all selected filters]]>
+                    </comment>
+                </field>
+                <field id="meta_description" translate="label" type="textarea" sortOrder="40" showInDefault="1">
+                    <label>Meta Description</label>
+                    <comment>
+                        <![CDATA[Please provide a pattern which will be used to generate Meta Description if this field in category is empty. You can use directives<br/>{{category_name}} - returns category name<br/>{{filter_values}} - returns all selected filters]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
