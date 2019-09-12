@@ -14,14 +14,16 @@ class UpdateMetatags
      */
     protected $metatagGenerator;
 
-    protected $tags = ['meta_title', 'meta_description'];
+    protected $keys;
 
     public function __construct(
         \MageSuite\SeoCategoryMetatagGeneration\Helper\Configuration $configuration,
-        \MageSuite\SeoCategoryMetatagGeneration\Model\MetatagGenerator $metatagGenerator
+        \MageSuite\SeoCategoryMetatagGeneration\Model\MetatagGenerator $metatagGenerator,
+        array $keys
     ) {
         $this->configuration = $configuration;
         $this->metatagGenerator = $metatagGenerator;
+        $this->keys = $keys;
     }
 
     public function aroundGetData(\Magento\Catalog\Model\Category $subject, \Closure $proceed, $key = '', $index = null)
@@ -36,7 +38,7 @@ class UpdateMetatags
             return $result;
         }
 
-        if (!in_array($key, $this->tags)) {
+        if (!in_array($key, $this->keys)) {
             return $result;
         }
 
