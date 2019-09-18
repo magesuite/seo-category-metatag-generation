@@ -6,7 +6,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="MageSuite_SeoCategoryMetatagGeneration::configuration" title="MageSuite Seo Category Metatag Generation configuration"/>
+                            <resource id="MageSuite_SeoCategoryMetatagGeneration::configuration" title="MageSuite Seo Category Metatag Generation"/>
                         </resource>
                     </resource>
                 </resource>
