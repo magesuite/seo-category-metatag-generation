@@ -45,17 +45,17 @@ class Values extends \MageSuite\DynamicDirectives\Model\Directive
 
         $filterableAttribute = $this->filterableAttributesProvider->getList($category);
 
-        $result = [];
-
         foreach ($params as $key => $value) {
             if (!isset($filterableAttribute[$key])) {
                 continue;
             }
 
-            $result[] = $value;
-        }
+            if (is_array($value)) {
+                $value = array_shift($value);
+            }
 
-        return implode(' ', $result);
+            return $value;
+        }
     }
 
     protected function getCategory()

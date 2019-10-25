@@ -18,13 +18,13 @@
                         <![CDATA[By enabling this option, category "Meta Title" and "Meta Description" will be generated from given patterns unless the relevant fields in the categories are filled in.]]>
                     </comment>
                 </field>
-                <field id="meta_title" translate="label" type="text" sortOrder="30" showInDefault="1">
+                <field id="meta_title" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Meta Title</label>
                     <comment>
                         <![CDATA[Please provide a pattern which will be used to generate Meta Title if this field in category is empty. You can use directives<br/>{{category_name}} - returns category name<br/>{{filter_values}} - returns all selected filters]]>
                     </comment>
                 </field>
-                <field id="meta_description" translate="label" type="textarea" sortOrder="40" showInDefault="1">
+                <field id="meta_description" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Meta Description</label>
                     <comment>
                         <![CDATA[Please provide a pattern which will be used to generate Meta Description if this field in category is empty. You can use directives<br/>{{category_name}} - returns category name<br/>{{filter_values}} - returns all selected filters]]>
