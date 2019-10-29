@@ -54,7 +54,7 @@ class Values extends \MageSuite\DynamicDirectives\Model\Directive
                 $value = array_shift($value);
             }
 
-            return $value;
+            return ucfirst($value);
         }
     }
 
