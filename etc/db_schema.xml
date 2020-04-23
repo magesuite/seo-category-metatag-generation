@@ -1,0 +1,32 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="category_metatag_generation_rule" resource="default" engine="innodb">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="false" nullable="false" comment="Rule Id" identity="true" />
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name" />
+        <column xsi:type="varchar" name="meta_title" nullable="true" comment="Meta title" />
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Meta description" />
+        <column xsi:type="mediumtext" name="conditions_serialized" nullable="true" comment="Conditions serialized" />
+        <column xsi:type="int" name="category_id" nullable="false" comment="Category id" />
+        <column xsi:type="int" name="sort_order" nullable="false" unsigned="true" comment="Category id" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+        </constraint>
+    </table>
+
+    <table name="category_metatag_generation_rule_store" resource="default" engine="innodb" comment="Category metatag generation rule to store linkage table">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="false" nullable="false" identity="false"
+                comment="Rule ID"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="STORE_RULE_ID_CATEGORY_METATAG_GENERATION_RULE_RULE_ID" table="category_metatag_generation_rule_store"
+                    column="rule_id" referenceTable="category_metatag_generation_rule" referenceColumn="rule_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="CATEGORY_METATAG_GENERATION_RULE_STORE_STORE_ID_STORE_STORE_ID" table="category_metatag_generation_rule_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="CATEGORY_METATAG_GENERATION_RULE_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

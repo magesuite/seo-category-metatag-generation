@@ -14,7 +14,7 @@ class MetatagGenerator
         $this->metatagPool = $metatagPool;
     }
 
-    public function generate($key)
+    public function generate($key, $entityValue)
     {
         /** @var \MageSuite\SeoCategoryMetatagGeneration\Model\Metatag\MetatagInterface $metatag */
         $metatag = $this->metatagPool->getMetatag($key);
@@ -23,6 +23,6 @@ class MetatagGenerator
             return null;
         }
 
-        return $metatag->getText();
+        return $metatag->getText($entityValue);
     }
 }

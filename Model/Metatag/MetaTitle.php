@@ -16,12 +16,19 @@ class MetaTitle implements MetatagInterface
      */
     protected $directiveApplier;
 
+    /**
+     * @var \MageSuite\SeoCategoryMetatagGeneration\Service\RuleResolver
+     */
+    protected $ruleResolver;
+
     public function __construct(
+        \MageSuite\SeoCategoryMetatagGeneration\Service\RuleResolver $ruleResolver,
         \MageSuite\SeoCategoryMetatagGeneration\Helper\Configuration $configuration,
         \MageSuite\DynamicDirectives\Service\DirectiveApplier $directiveApplier
     ) {
         $this->configuration = $configuration;
         $this->directiveApplier = $directiveApplier;
+        $this->ruleResolver = $ruleResolver;
     }
 
     public function isApplicable($key)
@@ -29,14 +36,30 @@ class MetaTitle implements MetatagInterface
         return $key == self::METATAG_KEY;
     }
 
-    public function getText()
+    public function getText($entityValue)
     {
+        $metaTitle = $this->getMetaTitle($entityValue);
+
+        return $this->directiveApplier->apply($metaTitle);
+    }
+
+    protected function getMetaTitle($entityValue) {
+        $rule = $this->ruleResolver->getApplicableRule();
+
+        if($rule == null and !empty($entityValue)) {
+            return $entityValue;
+        }
+
+        if(!empty($rule)) {
+            return $rule->getMetaTitle();
+        }
+
         $metaTitle = $this->configuration->getMetaTitle();
 
         if (empty($metaTitle)) {
             return null;
         }
 
-        return $this->directiveApplier->apply($metaTitle);
+        return $metaTitle;
     }
 }

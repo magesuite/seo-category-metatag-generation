@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">category_metatag_generation_rule_form.category_metatag_generation_rule_form_data_source</item>
+            <item name="deps" xsi:type="string">category_metatag_generation_rule_form.category_metatag_generation_rule_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Employee Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">category_metatag_generation_rule_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="MageSuite\SeoCategoryMetatagGeneration\Block\Adminhtml\Rule\Edit\SaveButton"/>
+            <button name="back" class="MageSuite\SeoCategoryMetatagGeneration\Block\Adminhtml\Rule\Edit\BackButton"/>
+        </buttons>
+    </settings>
+    <dataSource name="category_metatag_generation_rule_form_data_source">
+        <dataProvider class="MageSuite\SeoCategoryMetatagGeneration\Ui\Component\Form\Rule\DataProvider" name="category_metatag_generation_rule_form_data_source">
+            <settings>
+                <requestFieldName>rule_id</requestFieldName>
+                <primaryFieldName>rule_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <validateUrl path="category_metatag_generation/rule/validate"/>
+            <submitUrl path="category_metatag_generation/rule/save"/>
+        </settings>
+    </dataSource>
+    <fieldset name="rule">
+        <settings>
+            <label translate="true">Rule</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <dataScope>rule</dataScope>
+        </settings>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                </item>
+            </argument>
+        </field>
+        <field name="meta_title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Meta title</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">meta_title</item>
+                </item>
+            </argument>
+        </field>
+        <field name="meta_description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Meta description</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">meta_description</item>
+                </item>
+            </argument>
+        </field>
+        <field name="category_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Category Id</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">category_id</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </field>
+        <field name="sort_order">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Sort order</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">sort_order</item>
+                </item>
+            </argument>
+        </field>
+        <field name="storeviews" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Store View</label>
+                <dataScope>store_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="serialized_condition">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <container name="serialized_condition" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">MageSuite\SeoCategoryMetatagGeneration\Block\Rule\Fieldset\Conditions</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

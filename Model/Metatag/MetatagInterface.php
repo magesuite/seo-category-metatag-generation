@@ -13,5 +13,5 @@ interface MetatagInterface
     /**
      * @return string
      */
-    public function getText();
+    public function getText($entityValue);
 }
