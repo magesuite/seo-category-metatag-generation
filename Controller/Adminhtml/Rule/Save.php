@@ -37,6 +37,8 @@ class Save extends \Magento\Backend\App\Action
         }
         catch(\Exception $e) {
             $this->messageManager->addErrorMessage(__('There was an error while saving rule: %1', $e->getMessage()));
+
+            return $resultRedirect->setPath('*/*/create');
         }
     }
 }
