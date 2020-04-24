@@ -4,6 +4,10 @@ namespace MageSuite\SeoCategoryMetatagGeneration\Service;
 
 class RuleResolver
 {
+    const APPLIED_METATAG_GENERATION_RULE_REGISTRY_KEY = 'applied_metatag_generation_rule';
+    const METATAG_GENERATION_RULE_WAS_PROCESSED_REGISTRY_KEY = 'metatag_generation_rule_was_processed';
+    const ALL_STORE_VIEWS_ID = 0;
+
     protected static $appliedRule = null;
     protected static $rulesWereProcessed = false;
 
@@ -55,18 +59,18 @@ class RuleResolver
 
     public function getApplicableRule()
     {
-        if ($this->registry->registry('applied_metatag_generation_rule')) {
-            return $this->registry->registry('applied_metatag_generation_rule');
+        if ($this->registry->registry(self::APPLIED_METATAG_GENERATION_RULE_REGISTRY_KEY)) {
+            return $this->registry->registry(self::APPLIED_METATAG_GENERATION_RULE_REGISTRY_KEY);
         }
 
-        if ($this->registry->registry('metatag_generation_rule_was_processed')) {
+        if ($this->registry->registry(self::METATAG_GENERATION_RULE_WAS_PROCESSED_REGISTRY_KEY)) {
             return null;
         }
 
         $rule = $this->getRule();
 
-        $this->registry->register('applied_metatag_generation_rule', $rule);
-        $this->registry->register('metatag_generation_rule_was_processed', true);
+        $this->registry->register(self::APPLIED_METATAG_GENERATION_RULE_REGISTRY_KEY, $rule);
+        $this->registry->register(self::METATAG_GENERATION_RULE_WAS_PROCESSED_REGISTRY_KEY, true);
 
         return $rule;
     }
@@ -81,7 +85,7 @@ class RuleResolver
             return null;
         }
 
-        $stores = [0, $this->storeManager->getStore()->getId()];
+        $stores = [self::ALL_STORE_VIEWS_ID, $this->storeManager->getStore()->getId()];
 
         $ruleCollection->addFilter('category_id', $category->getId());
         $ruleCollection->setOrder('sort_order', 'ASC');
@@ -93,11 +97,11 @@ class RuleResolver
         }
 
         $filterSelection = $this->getFilterSelection();
+
         foreach ($rules as $rule) {
             $isValid = $rule->validate($filterSelection);
 
             if ($isValid) {
-                self::$appliedRule = $rule;
                 return $rule;
             }
         }

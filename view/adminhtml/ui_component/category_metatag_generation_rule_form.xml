@@ -14,8 +14,8 @@
     </argument>
     <settings>
         <buttons>
-            <button name="save" class="MageSuite\SeoCategoryMetatagGeneration\Block\Adminhtml\Rule\Edit\SaveButton"/>
-            <button name="back" class="MageSuite\SeoCategoryMetatagGeneration\Block\Adminhtml\Rule\Edit\BackButton"/>
+            <button name="save" class="MageSuite\SeoCategoryMetatagGeneration\Ui\Component\Control\SaveButton"/>
+            <button name="back" class="MageSuite\SeoCategoryMetatagGeneration\Ui\Component\Control\BackButton"/>
         </buttons>
     </settings>
     <dataSource name="category_metatag_generation_rule_form_data_source">

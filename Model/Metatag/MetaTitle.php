@@ -22,9 +22,9 @@ class MetaTitle implements MetatagInterface
     protected $ruleResolver;
 
     public function __construct(
-        \MageSuite\SeoCategoryMetatagGeneration\Service\RuleResolver $ruleResolver,
         \MageSuite\SeoCategoryMetatagGeneration\Helper\Configuration $configuration,
-        \MageSuite\DynamicDirectives\Service\DirectiveApplier $directiveApplier
+        \MageSuite\DynamicDirectives\Service\DirectiveApplier $directiveApplier,
+        \MageSuite\SeoCategoryMetatagGeneration\Service\RuleResolver $ruleResolver
     ) {
         $this->configuration = $configuration;
         $this->directiveApplier = $directiveApplier;

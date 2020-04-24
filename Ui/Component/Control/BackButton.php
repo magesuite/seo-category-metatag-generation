@@ -1,6 +1,6 @@
 <?php
 
-namespace MageSuite\SeoCategoryMetatagGeneration\Block\Adminhtml\Rule\Edit;
+namespace MageSuite\SeoCategoryMetatagGeneration\Ui\Component\Control;
 
 class BackButton implements \Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface
 {
@@ -42,13 +42,13 @@ class BackButton implements \Magento\Framework\View\Element\UiComponent\Control\
     public function getBackUrl()
     {
         $params = [];
-        if ($this->request->getParam('category_id')) {
-            $params['id'] = $this->request->getParam('category_id');
-        }
+        $params['id'] = $this->request->getParam('category_id');
 
-        if ($this->request->getParam('rule_id')) {
+        $ruleId = $this->request->getParam('rule_id');
+
+        if ($ruleId) {
             $rule = $this->ruleFactory->create();
-            $rule->load($this->request->getParam('rule_id'));
+            $rule->load($ruleId);
 
             $params['id'] = $rule->getCategoryId();
 

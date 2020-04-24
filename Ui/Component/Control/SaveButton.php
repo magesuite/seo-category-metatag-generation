@@ -1,6 +1,6 @@
 <?php
 
-namespace MageSuite\SeoCategoryMetatagGeneration\Block\Adminhtml\Rule\Edit;
+namespace MageSuite\SeoCategoryMetatagGeneration\Ui\Component\Control;
 
 class SaveButton implements \Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface
 {
