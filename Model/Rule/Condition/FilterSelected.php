@@ -51,11 +51,6 @@ class FilterSelected extends \Magento\Rule\Model\Condition\AbstractCondition
         return $this;
     }
 
-    /**
-     * Get attribute element
-     *
-     * @return $this
-     */
     public function getAttributeElement()
     {
         $element = parent::getAttributeElement();
@@ -63,31 +58,16 @@ class FilterSelected extends \Magento\Rule\Model\Condition\AbstractCondition
         return $element;
     }
 
-    /**
-     * Get input type
-     *
-     * @return string
-     */
     public function getInputType()
     {
         return 'boolean';
     }
 
-    /**
-     * Get value element type
-     *
-     * @return string
-     */
     public function getValueElementType()
     {
         return 'select';
     }
 
-    /**
-     * Get value select options
-     *
-     * @return array|mixed
-     */
     public function getValueSelectOptions()
     {
         return [
@@ -98,12 +78,6 @@ class FilterSelected extends \Magento\Rule\Model\Condition\AbstractCondition
         ];
     }
 
-    /**
-     * Validate Address Rule Condition
-     *
-     * @param \Magento\Framework\Model\AbstractModel $model
-     * @return bool
-     */
     public function validate(\Magento\Framework\Model\AbstractModel $model)
     {
         $this->setData('attribute', 'is_selected_'.$this->getAttribute());

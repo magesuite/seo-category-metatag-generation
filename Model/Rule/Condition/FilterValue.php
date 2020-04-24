@@ -59,11 +59,6 @@ class FilterValue extends \Magento\Rule\Model\Condition\AbstractCondition
         return $this;
     }
 
-    /**
-     * Get attribute element
-     *
-     * @return $this
-     */
     public function getAttributeElement()
     {
         $element = parent::getAttributeElement();
@@ -71,31 +66,16 @@ class FilterValue extends \Magento\Rule\Model\Condition\AbstractCondition
         return $element;
     }
 
-    /**
-     * Get input type
-     *
-     * @return string
-     */
     public function getInputType()
     {
         return 'multiselect';
     }
 
-    /**
-     * Get value element type
-     *
-     * @return string
-     */
     public function getValueElementType()
     {
         return 'multiselect';
     }
 
-    /**
-     * Get value select options
-     *
-     * @return array|mixed
-     */
     public function getValueSelectOptions()
     {
         if (!$this->hasData('value_select_options')) {

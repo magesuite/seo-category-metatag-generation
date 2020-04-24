@@ -34,11 +34,6 @@ class Combine extends \Magento\Rule\Model\Condition\Combine
         parent::__construct($context, $data);
     }
 
-    /**
-     * Get new child select options
-     *
-     * @return array
-     */
     public function getNewChildSelectOptions()
     {
         $filters = $this->conditionFilterValue->loadAttributeOptions()
