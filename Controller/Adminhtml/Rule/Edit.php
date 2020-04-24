@@ -12,8 +12,7 @@ class Edit extends \Magento\Backend\App\Action
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \MageSuite\SeoCategoryMetatagGeneration\Model\RuleFactory $ruleFactory
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->ruleFactory = $ruleFactory;
     }
@@ -24,7 +23,7 @@ class Edit extends \Magento\Backend\App\Action
         $rule = $this->ruleFactory->create();
         $rule->load($ruleId);
 
-        if(!$rule->getId()) {
+        if (!$rule->getId()) {
             throw new \Magento\Framework\Exception\NotFoundException(__('Rule does not exist'));
         }
 

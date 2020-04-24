@@ -27,8 +27,7 @@ class FilterValue extends \Magento\Rule\Model\Condition\AbstractCondition
         \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory $attributeCollectionFactory,
         \Magento\Eav\Model\Config $eavConfig,
         array $data = []
-    )
-    {
+    ) {
         $this->attributeCollectionFactory = $attributeCollectionFactory;
         $this->eavConfig = $eavConfig;
 
@@ -41,7 +40,8 @@ class FilterValue extends \Magento\Rule\Model\Condition\AbstractCondition
         $attributeCollection = $this->attributeCollectionFactory->create();
         $attributeCollection
             ->addFieldToFilter(\Magento\Catalog\Api\Data\EavAttributeInterface::IS_FILTERABLE, true)
-            ->addFieldToFilter(\Magento\Eav\Api\Data\AttributeInterface::FRONTEND_INPUT,
+            ->addFieldToFilter(
+                \Magento\Eav\Api\Data\AttributeInterface::FRONTEND_INPUT,
                 [
                     'select' => 'select',
                     'multiselect' => 'multiselect',
@@ -50,7 +50,7 @@ class FilterValue extends \Magento\Rule\Model\Condition\AbstractCondition
             );
 
         $attributes = [];
-        foreach($attributeCollection->getItems() as $attribute) {
+        foreach ($attributeCollection->getItems() as $attribute) {
             $attributes[$attribute->getAttributeCode()] = $attribute->getFrontendLabel();
         }
 

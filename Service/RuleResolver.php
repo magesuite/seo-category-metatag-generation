@@ -37,7 +37,6 @@ class RuleResolver
      */
     protected $storeManager;
 
-
     public function __construct(
         \MageSuite\SeoCategoryMetatagGeneration\Model\ResourceModel\Rule\CollectionFactory $ruleCollectionFactory,
         \Magento\Framework\Registry $registry,
@@ -45,8 +44,7 @@ class RuleResolver
         \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory $attributeCollectionFactory,
         \Magento\Framework\App\Request\Http $request,
         \Magento\Store\Model\StoreManagerInterface $storeManager
-    )
-    {
+    ) {
         $this->ruleCollectionFactory = $ruleCollectionFactory;
         $this->registry = $registry;
         $this->filterSelectionFactory = $filterSelectionFactory;
@@ -55,12 +53,13 @@ class RuleResolver
         $this->storeManager = $storeManager;
     }
 
-    public function getApplicableRule() {
-        if($this->registry->registry('applied_metatag_generation_rule')) {
+    public function getApplicableRule()
+    {
+        if ($this->registry->registry('applied_metatag_generation_rule')) {
             return $this->registry->registry('applied_metatag_generation_rule');
         }
 
-        if($this->registry->registry('metatag_generation_rule_was_processed')) {
+        if ($this->registry->registry('metatag_generation_rule_was_processed')) {
             return null;
         }
 
@@ -72,12 +71,13 @@ class RuleResolver
         return $rule;
     }
 
-    public function getRule() {
+    public function getRule()
+    {
         $ruleCollection = $this->ruleCollectionFactory->create();
 
         $category = $this->getCategory();
 
-        if($category == null) {
+        if ($category == null) {
             return null;
         }
 
@@ -88,15 +88,15 @@ class RuleResolver
         $ruleCollection->addFieldToFilter('store_id', $stores);
         $rules = $ruleCollection->getItems();
 
-        if(empty($rules)) {
+        if (empty($rules)) {
             return null;
         }
 
         $filterSelection = $this->getFilterSelection();
-        foreach($rules as $rule) {
+        foreach ($rules as $rule) {
             $isValid = $rule->validate($filterSelection);
 
-            if($isValid) {
+            if ($isValid) {
                 self::$appliedRule = $rule;
                 return $rule;
             }
@@ -112,11 +112,12 @@ class RuleResolver
         return $category && $category->getId() ? $category : null;
     }
 
-    protected function getFilterSelection() {
+    protected function getFilterSelection()
+    {
         $dataObject = $this->filterSelectionFactory->create();
         $params = $this->request->getParams();
 
-        foreach($params as $attributeCode => $values) {
+        foreach ($params as $attributeCode => $values) {
             $dataObject->setData('is_selected_'.$attributeCode, true);
         }
 
@@ -126,20 +127,20 @@ class RuleResolver
 
         $attributes = [];
 
-        foreach($attributeCollection->getItems() as $attribute) {
+        foreach ($attributeCollection->getItems() as $attribute) {
             $attributeCode = $attribute->getAttributeCode();
 
             $options = $attribute->getOptions();
 
-            foreach($options as $option)  {
+            foreach ($options as $option) {
                 $attributes[$attribute->getAttributeCode()]['options'][$option->getLabel()] = $option->getValue();
             }
 
-            if(isset($params[$attributeCode])) {
-                if(is_array($params[$attributeCode])) {
+            if (isset($params[$attributeCode])) {
+                if (is_array($params[$attributeCode])) {
                     $values = [];
 
-                    foreach($params[$attributeCode] as $label) {
+                    foreach ($params[$attributeCode] as $label) {
                         $values[] = $attributes[$attributeCode]['options'][$label] ?? null;
                     }
 
@@ -154,5 +155,4 @@ class RuleResolver
 
         return $dataObject;
     }
-
 }

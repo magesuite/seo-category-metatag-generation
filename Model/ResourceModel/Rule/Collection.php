@@ -67,7 +67,8 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         return parent::addFieldToFilter($field, $condition);
     }
 
-    protected function addStoreFilter($store) {
+    protected function addStoreFilter($store)
+    {
         if ($store instanceof \Magento\Store\Model\Store) {
             $store = [$store->getId()];
         }
@@ -93,5 +94,4 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 
         parent::_renderFiltersBefore();
     }
-
 }

@@ -3,8 +3,9 @@ $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
 include 'categories.php';
 
-if(!function_exists('getOptionId')) {
-    function getOptionId($attributeCode, $label) {
+if (!function_exists('getOptionId')) {
+    function getOptionId($attributeCode, $label)
+    {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
         /** @var \Magento\Eav\Model\Entity\Attribute $attribute */
@@ -13,8 +14,8 @@ if(!function_exists('getOptionId')) {
 
         $options = $attribute->getOptions();
 
-        foreach($options as $option) {
-            if($option->getLabel() == $label) {
+        foreach ($options as $option) {
+            if ($option->getLabel() == $label) {
                 return $option->getValue();
             }
         }
@@ -120,4 +121,3 @@ $rule->loadPost(
 );
 
 $rule->save();
-

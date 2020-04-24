@@ -43,14 +43,15 @@ class MetaTitle implements MetatagInterface
         return $this->directiveApplier->apply($metaTitle);
     }
 
-    protected function getMetaTitle($entityValue) {
+    protected function getMetaTitle($entityValue)
+    {
         $rule = $this->ruleResolver->getApplicableRule();
 
-        if($rule == null and !empty($entityValue)) {
+        if ($rule == null && !empty($entityValue)) {
             return $entityValue;
         }
 
-        if(!empty($rule)) {
+        if (!empty($rule)) {
             return $rule->getMetaTitle();
         }
 

@@ -38,12 +38,12 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             $this->loadedData[$rule->getId()]['rule'] = $rule->getData();
         }
 
-        if(empty($this->loadedData)) {
-            if($this->request->getParam('category_id') and empty($this->loadedData)) {
+        if (empty($this->loadedData)) {
+            if ($this->request->getParam('category_id') && empty($this->loadedData)) {
                 $this->loadedData[null]['rule']['category_id'] = $this->request->getParam('category_id');
             }
 
-            if($this->request->getParam('store_id')) {
+            if ($this->request->getParam('store_id')) {
                 $this->loadedData[null]['rule']['store_id'] = [$this->request->getParam('store_id')];
             }
         }

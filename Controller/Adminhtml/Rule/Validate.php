@@ -12,8 +12,7 @@ class Validate extends \Magento\Backend\App\Action
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
-    )
-    {
+    ) {
         \Magento\Backend\App\Action::__construct($context);
 
         $this->resultJsonFactory = $resultJsonFactory;

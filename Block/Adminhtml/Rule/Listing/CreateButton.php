@@ -4,15 +4,18 @@ namespace MageSuite\SeoCategoryMetatagGeneration\Block\Adminhtml\Rule\Listing;
 
 class CreateButton extends \Magento\Backend\Block\Widget\Button
 {
-    public function getClass() {
+    public function getClass()
+    {
         return 'action-secondary';
     }
 
-    public function getLabel() {
+    public function getLabel()
+    {
         return __('Create new rule');
     }
 
-    public function getTitle() {
+    public function getTitle()
+    {
         return __('Create new rule');
     }
 

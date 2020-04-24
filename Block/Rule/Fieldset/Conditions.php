@@ -25,7 +25,7 @@ class Conditions extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Magento\SalesRule\Model\RuleFactory
      */
-    private $ruleFactory;
+    protected $ruleFactory;
 
     /**
      * Initialize dependencies.
@@ -45,26 +45,17 @@ class Conditions extends \Magento\Backend\Block\Widget\Form\Generic
         \MageSuite\SeoCategoryMetatagGeneration\Model\RuleFactory $ruleFactory,
         \Magento\Backend\Block\Widget\Form\Renderer\Fieldset $rendererFieldset,
         array $data = []
-    )
-    {
+    ) {
         $this->_rendererFieldset = $rendererFieldset;
         $this->_conditions = $conditions;
         $this->ruleFactory = $ruleFactory;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
-
-
-
-    /**
-     * Prepare form before rendering HTML
-     *
-     * @return $this
-     */
     protected function _prepareForm()
     {
         $model = $this->ruleFactory->create();
-        if($this->getRequest()->getParam('rule_id')) {
+        if ($this->getRequest()->getParam('rule_id')) {
             $model->load($this->getRequest()->getParam('rule_id'));
         }
         $form = $this->addTabToForm($model);
@@ -103,16 +94,16 @@ class Conditions extends \Magento\Backend\Block\Widget\Form\Generic
             ->setRenderer($renderer);
 
         $fieldset->addField(
-                'conditions',
-                'text',
-                [
+            'conditions',
+            'text',
+            [
                     'name' => 'conditions',
                     'label' => __('Conditions'),
                     'title' => __('Conditions'),
                     'required' => true,
                     'data-form-part' => $formName
                 ]
-            )
+        )
             ->setRule($model)
             ->setRenderer($this->_conditions);
 

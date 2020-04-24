@@ -43,14 +43,15 @@ class MetaDescription implements MetatagInterface
         return $this->directiveApplier->apply($metaDescription);
     }
 
-    protected function getMetaDescription($entityValue) {
+    protected function getMetaDescription($entityValue)
+    {
         $rule = $this->ruleResolver->getApplicableRule();
 
-        if($rule == null and !empty($entityValue)) {
+        if ($rule == null && !empty($entityValue)) {
             return $entityValue;
         }
 
-        if(!empty($rule)) {
+        if (!empty($rule)) {
             return $rule->getMetaDescription();
         }
 

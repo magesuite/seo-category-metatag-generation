@@ -18,7 +18,8 @@ class Rule extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->_init('category_metatag_generation_rule', 'rule_id');
     }
 
-    public function getRuleStoreIds($ruleId) {
+    public function getRuleStoreIds($ruleId)
+    {
         $connection = $this->getConnection();
 
         $select = $connection->select()
@@ -43,7 +44,7 @@ class Rule extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 
     protected function _afterSave(\Magento\Framework\Model\AbstractModel $object)
     {
-        if($object->getStores()) {
+        if ($object->getStores()) {
             $oldStores = $this->getRuleStoreIds($object->getId());
             $newStores = (array)$object->getStores();
             if (empty($newStores)) {

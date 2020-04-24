@@ -27,8 +27,7 @@ class FilterSelected extends \Magento\Rule\Model\Condition\AbstractCondition
         \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory $attributeCollectionFactory,
         \Magento\Eav\Model\Config $eavConfig,
         array $data = []
-    )
-    {
+    ) {
         $this->attributeCollectionFactory = $attributeCollectionFactory;
         $this->eavConfig = $eavConfig;
 
@@ -43,7 +42,7 @@ class FilterSelected extends \Magento\Rule\Model\Condition\AbstractCondition
             ->addFieldToFilter(\Magento\Catalog\Api\Data\EavAttributeInterface::IS_FILTERABLE, true);
 
         $attributes = [];
-        foreach($attributeCollection->getItems() as $attribute) {
+        foreach ($attributeCollection->getItems() as $attribute) {
             $attributes[$attribute->getAttributeCode()] = $attribute->getFrontendLabel();
         }
 

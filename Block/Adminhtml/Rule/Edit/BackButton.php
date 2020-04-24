@@ -23,8 +23,7 @@ class BackButton implements \Magento\Framework\View\Element\UiComponent\Control\
         \Magento\Framework\App\Request\Http $request,
         \Magento\Framework\UrlInterface $urlBuilder,
         \MageSuite\SeoCategoryMetatagGeneration\Model\RuleFactory $ruleFactory
-    )
-    {
+    ) {
         $this->request = $request;
         $this->ruleFactory = $ruleFactory;
         $this->urlBuilder = $urlBuilder;
@@ -40,13 +39,14 @@ class BackButton implements \Magento\Framework\View\Element\UiComponent\Control\
         ];
     }
 
-    public function getBackUrl() {
+    public function getBackUrl()
+    {
         $params = [];
-        if($this->request->getParam('category_id')) {
+        if ($this->request->getParam('category_id')) {
             $params['id'] = $this->request->getParam('category_id');
         }
 
-        if($this->request->getParam('rule_id')) {
+        if ($this->request->getParam('rule_id')) {
             $rule = $this->ruleFactory->create();
             $rule->load($this->request->getParam('rule_id'));
 
@@ -54,11 +54,10 @@ class BackButton implements \Magento\Framework\View\Element\UiComponent\Control\
 
             $stores = $rule->getStores();
 
-            if(count($stores) == 1) {
+            if (count($stores) == 1) {
                 $params['store'] = array_shift($stores);
             }
         }
-
 
         return $this->urlBuilder->getUrl('catalog/category/edit', $params);
     }

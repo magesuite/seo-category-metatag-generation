@@ -12,8 +12,7 @@ class NewConditionHtml extends \Magento\Backend\App\Action
     public function __construct(
         \Magento\Backend\App\Action $context,
         \MageSuite\SeoCategoryMetatagGeneration\Model\RuleFactory $ruleFactory
-    )
-    {
+    ) {
         \Magento\Backend\App\Action::__construct($context);
 
         $this->ruleFactory = $ruleFactory;
