@@ -30,10 +30,6 @@ class UpdateMetatags
     {
         $result = $proceed($key, $index);
 
-        if (!empty($result)) {
-            return $result;
-        }
-
         if (!$this->configuration->isEnabled()) {
             return $result;
         }
@@ -42,6 +38,6 @@ class UpdateMetatags
             return $result;
         }
 
-        return $this->metatagGenerator->generate($key);
+        return $this->metatagGenerator->generate($key, $result);
     }
 }

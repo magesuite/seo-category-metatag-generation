@@ -16,12 +16,19 @@ class MetaDescription implements MetatagInterface
      */
     protected $directiveApplier;
 
+    /**
+     * @var \MageSuite\SeoCategoryMetatagGeneration\Service\RuleResolver
+     */
+    protected $ruleResolver;
+
     public function __construct(
         \MageSuite\SeoCategoryMetatagGeneration\Helper\Configuration $configuration,
-        \MageSuite\DynamicDirectives\Service\DirectiveApplier $directiveApplier
+        \MageSuite\DynamicDirectives\Service\DirectiveApplier $directiveApplier,
+        \MageSuite\SeoCategoryMetatagGeneration\Service\RuleResolver $ruleResolver
     ) {
         $this->configuration = $configuration;
         $this->directiveApplier = $directiveApplier;
+        $this->ruleResolver = $ruleResolver;
     }
 
     public function isApplicable($key)
@@ -29,14 +36,31 @@ class MetaDescription implements MetatagInterface
         return $key == self::METATAG_KEY;
     }
 
-    public function getText()
+    public function getText($entityValue)
     {
+        $metaDescription = $this->getMetaDescription($entityValue);
+
+        return $this->directiveApplier->apply($metaDescription);
+    }
+
+    protected function getMetaDescription($entityValue)
+    {
+        $rule = $this->ruleResolver->getApplicableRule();
+
+        if ($rule == null && !empty($entityValue)) {
+            return $entityValue;
+        }
+
+        if (!empty($rule)) {
+            return $rule->getMetaDescription();
+        }
+
         $metaDescription = $this->configuration->getMetaDescription();
 
         if (empty($metaDescription)) {
             return null;
         }
 
-        return $this->directiveApplier->apply($metaDescription);
+        return $metaDescription;
     }
 }

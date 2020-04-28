@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="search_engine_optimization">
+        <container name="create_new_rule" sortOrder="250">
+            <htmlContent name="create_new_rule">
+                <argument name="block" xsi:type="object">MageSuite\SeoCategoryMetatagGeneration\Block\Adminhtml\Rule\Listing\CreateButton</argument>
+            </htmlContent>
+        </container>
+        <insertListing name="category_metatag_generation_rule_listing_insert">
+            <settings>
+                <dataLinks>
+                    <exports>false</exports>
+                    <imports>true</imports>
+                </dataLinks>
+                <externalProvider>category_metatag_generation_rule_listing.category_metatag_generation_rule_listing_data_source</externalProvider>
+                <autoRender>true</autoRender>
+                <ns>category_metatag_generation_rule_listing</ns>
+                <exports>
+                    <link name="category_id">${ $.externalProvider }:params.category_id</link>
+                    <link name="store_id">${ $.externalProvider }:params.store_id</link>
+                </exports>
+                <imports>
+                    <link name="category_id">${ $.provider }:data.entity_id</link>
+                    <link name="store_id">${ $.provider }:data.store_id</link>
+                </imports>
+            </settings>
+        </insertListing>
+    </fieldset>
+</form>

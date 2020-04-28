@@ -27,4 +27,12 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="category_metatag_generation_rule_listing_data_source" xsi:type="string">MageSuite\SeoCategoryMetatagGeneration\Ui\Component\Listing\Rule\DataProvider</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

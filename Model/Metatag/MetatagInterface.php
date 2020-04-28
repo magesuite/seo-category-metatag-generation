@@ -11,7 +11,8 @@ interface MetatagInterface
     public function isApplicable($key);
 
     /**
+     * @param string $entityValue
      * @return string
      */
-    public function getText();
+    public function getText($entityValue);
 }
