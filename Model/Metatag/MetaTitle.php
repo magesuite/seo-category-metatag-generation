@@ -51,7 +51,7 @@ class MetaTitle implements MetatagInterface
             return $entityValue;
         }
 
-        if (!empty($rule)) {
+        if (!empty($rule) && !empty($rule->getMetaTitle())) {
             return $rule->getMetaTitle();
         }
 

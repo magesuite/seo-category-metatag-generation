@@ -42,7 +42,7 @@
             <opened>true</opened>
             <dataScope>rule</dataScope>
         </settings>
-        <field name="name">
+        <field name="name" sortOrder="10">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
@@ -53,7 +53,7 @@
                 </item>
             </argument>
         </field>
-        <field name="meta_title">
+        <field name="meta_title" sortOrder="20">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
@@ -61,10 +61,11 @@
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">rule</item>
                     <item name="dataScope" xsi:type="string">meta_title</item>
+                    <item name="notice" xsi:type="string">Leave empty to use data from category/global settings.</item>
                 </item>
             </argument>
         </field>
-        <field name="meta_description">
+        <field name="meta_description" sortOrder="30">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
@@ -72,10 +73,11 @@
                     <item name="formElement" xsi:type="string">textarea</item>
                     <item name="source" xsi:type="string">rule</item>
                     <item name="dataScope" xsi:type="string">meta_description</item>
+                    <item name="notice" xsi:type="string">Leave empty to use data from category/global settings.</item>
                 </item>
             </argument>
         </field>
-        <field name="category_id">
+        <field name="category_id" sortOrder="40">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
@@ -87,7 +89,7 @@
                 </item>
             </argument>
         </field>
-        <field name="sort_order">
+        <field name="sort_order" sortOrder="50">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
@@ -95,10 +97,11 @@
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">rule</item>
                     <item name="dataScope" xsi:type="string">sort_order</item>
+                    <item name="notice" xsi:type="string" translate="true">Priority of rule. Lower value means higher priority. Before processing rules are sorted by sort order ascending. First matched rule is used, other ones are ignored.</item>
                 </item>
             </argument>
         </field>
-        <field name="storeviews" formElement="multiselect">
+        <field name="storeviews" sortOrder="60" formElement="multiselect">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">rule</item>
