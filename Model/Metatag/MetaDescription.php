@@ -51,7 +51,7 @@ class MetaDescription implements MetatagInterface
             return $entityValue;
         }
 
-        if (!empty($rule)) {
+        if (!empty($rule) && !empty($rule->getMetaDescription())) {
             return $rule->getMetaDescription();
         }
 
