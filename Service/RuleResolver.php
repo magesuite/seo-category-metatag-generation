@@ -137,7 +137,8 @@ class RuleResolver
             $options = $attribute->getOptions();
 
             foreach ($options as $option) {
-                $attributes[$attribute->getAttributeCode()]['options'][$option->getLabel()] = $option->getValue();
+                $label = (string)$option->getLabel();
+                $attributes[$attribute->getAttributeCode()]['options'][$label] = $option->getValue();
             }
 
             if (isset($params[$attributeCode])) {
