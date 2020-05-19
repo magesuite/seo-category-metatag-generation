@@ -14,7 +14,6 @@ $category
     ->setDefaultSortBy('name')
     ->setIsActive(true)
     ->setPosition(1)
-    ->setAvailableSortBy(['position'])
     ->save()
     ->reindex();
 
@@ -31,7 +30,6 @@ $category
     ->setDefaultSortBy('name')
     ->setIsActive(true)
     ->setPosition(1)
-    ->setAvailableSortBy(['position'])
     ->setMetaTitle('Meta title text')
     ->setMetaDescription('Meta description text')
     ->save()

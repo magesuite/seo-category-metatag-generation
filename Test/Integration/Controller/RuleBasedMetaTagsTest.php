@@ -5,7 +5,7 @@ namespace MageSuite\SeoCategoryMetatagGeneration\Test\Integration\Controller;
 class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractController
 {
     /**
-     * @var \Magento\Framework\App\ObjectManager
+     * @var \Magento\TestFramework\ObjectManager
      */
     protected $objectManager;
 
@@ -17,10 +17,13 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
     }
 
     /**
+     * @magentoDbIsolation enabled
+     * @magentoAppIsolation enabled
+     * @magentoDataFixture clearCache
      * @magentoDataFixture Magento/Framework/Search/_files/filterable_attribute.php
      * @magentoDataFixture loadRules
      * @magentoConfigFixture current_store seo/category_metatag_generation/is_enabled 1
-     * @dataProvider testCases
+     * @dataProvider rulesTestCases
      */
     public function testItUsesRuleSettingWhenCorrectFilterWerePassed($params, $expectedTitle, $expectedDescription)
     {
@@ -34,7 +37,7 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
         $this->assertContains(sprintf('<meta name="description" content="%s"', $expectedDescription), $response);
     }
 
-    public static function testCases()
+    public static function rulesTestCases()
     {
         return [
             'only_rule_option_was_passed' => [
@@ -75,6 +78,11 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
     public static function loadRules()
     {
         require __DIR__ . '/../_files/rules.php';
+    }
+
+    public static function clearCache()
+    {
+        require __DIR__ . '/../_files/clear_cache.php';
     }
 
     public static function loadRulesRollback()
