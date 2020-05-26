@@ -11,7 +11,7 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
                 $ruleId = $item['rule_id'];
 
                 $editRule = $this->context->getUrl('category_metatag_generation/rule/edit', ['rule_id' => $ruleId]);
-                $removeRule = $this->context->getUrl('category_metatag_generation/rule/remove', ['rule_id' => $ruleId]);
+                $deleteRule = $this->context->getUrl('category_metatag_generation/rule/delete', ['rule_id' => $ruleId]);
 
                 $item[$this->getData('name')] = [
                     'edit' => [
@@ -19,8 +19,8 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
                         'label' => __('Edit')
                     ],
                     'remove' => [
-                        'href' => $removeRule,
-                        'label' => __('Remove'),
+                        'href' => $deleteRule ,
+                        'label' => __('Delete'),
                         'confirm' => [
                             'title' => 'Delete rule',
                             'message' => 'Are you sure you want to delete this rule?'
