@@ -5,6 +5,7 @@ namespace MageSuite\SeoCategoryMetatagGeneration\Model\Metatag;
 class MetaTitle implements MetatagInterface
 {
     const METATAG_KEY = 'meta_title';
+    const OG_KEY = 'og_title';
 
     /**
      * @var \MageSuite\SeoCategoryMetatagGeneration\Helper\Configuration
@@ -33,7 +34,7 @@ class MetaTitle implements MetatagInterface
 
     public function isApplicable($key)
     {
-        return $key == self::METATAG_KEY;
+        return in_array($key, [self::METATAG_KEY, self::OG_KEY], true);
     }
 
     public function getText($entityValue)

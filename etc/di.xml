@@ -15,6 +15,8 @@
             <argument name="keys" xsi:type="array">
                 <item name="meta_title" xsi:type="string">meta_title</item>
                 <item name="meta_description" xsi:type="string">meta_description</item>
+                <item name="og_title" xsi:type="string">og_title</item>
+                <item name="og_description" xsi:type="string">og_description</item>
             </argument>
         </arguments>
     </type>
@@ -24,6 +26,8 @@
             <argument name="metatags" xsi:type="array">
                 <item name="meta_title" xsi:type="object">\MageSuite\SeoCategoryMetatagGeneration\Model\Metatag\MetaTitle</item>
                 <item name="meta_description" xsi:type="object">MageSuite\SeoCategoryMetatagGeneration\Model\Metatag\MetaDescription</item>
+                <item name="og_title" xsi:type="object">\MageSuite\SeoCategoryMetatagGeneration\Model\Metatag\MetaTitle</item>
+                <item name="og_description" xsi:type="object">MageSuite\SeoCategoryMetatagGeneration\Model\Metatag\MetaDescription</item>
             </argument>
         </arguments>
     </type>
