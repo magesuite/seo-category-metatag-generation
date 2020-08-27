@@ -9,7 +9,7 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
      */
     protected $objectManager;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -33,8 +33,10 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
 
         $response = $this->getResponse()->getBody();
 
-        $this->assertContains(sprintf('<meta name="title" content="%s"', $expectedTitle), $response);
-        $this->assertContains(sprintf('<meta name="description" content="%s"', $expectedDescription), $response);
+        $assertContains = method_exists($this, 'assertStringContainsString') ? 'assertStringContainsString' : 'assertContains';
+
+        $this->$assertContains(sprintf('<meta name="title" content="%s"', $expectedTitle), $response);
+        $this->$assertContains(sprintf('<meta name="description" content="%s"', $expectedDescription), $response);
     }
 
     public static function rulesTestCases()

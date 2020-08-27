@@ -21,7 +21,7 @@ class CategoryTest extends \PHPUnit\Framework\TestCase
      */
     protected $categoryRepository;
 
-    public function setUp()
+    public function setUp(): void
     {
         $objectManager = \Magento\TestFramework\ObjectManager::getInstance();
         $this->registry = $objectManager->get(\Magento\Framework\Registry::class);
