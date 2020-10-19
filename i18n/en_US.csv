@@ -1,0 +1,35 @@
+"Create new rule","Create new rule"
+Conditions,Conditions
+"Create rule","Create rule"
+"We can't find a rule to delete.","We can't find a rule to delete."
+"Rule was deleted","Rule was deleted"
+"Rule does not exist","Rule does not exist"
+"'Edit rule: ' .","'Edit rule: ' ."
+Listing,Listing
+"There was an error while saving rule: %1","There was an error while saving rule: %1"
+"Conditions combination","Conditions combination"
+"Filter is selected","Filter is selected"
+"Filter value","Filter value"
+selected,selected
+"Back to category","Back to category"
+Save,Save
+Edit,Edit
+Delete,Delete
+MageSuite,MageSuite
+SEO,SEO
+"Category Metatag Generation","Category Metatag Generation"
+"Is Enabled","Is Enabled"
+"Meta Title","Meta Title"
+"Meta Description","Meta Description"
+"Employee Information","Employee Information"
+Rule,Rule
+"Rule Name","Rule Name"
+"Meta title","Meta title"
+"Meta description","Meta description"
+"Category Id","Category Id"
+"Sort order","Sort order"
+"Priority of rule. Lower value means higher priority. Before processing rules are sorted by sort order ascending. First matched rule is used, other ones are ignored.","Priority of rule. Lower value means higher priority. Before processing rules are sorted by sort order ascending. First matched rule is used, other ones are ignored."
+"Store View","Store View"
+"Rule Id","Rule Id"
+Name,Name
+Actions,Actions
