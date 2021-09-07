@@ -19,9 +19,8 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
     /**
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
-     * @magentoDataFixture clearCache
-     * @magentoDataFixture Magento/Framework/Search/_files/filterable_attribute.php
-     * @magentoDataFixture loadRules
+     * @magentoDataFixtureBeforeTransaction clearCache
+     * @magentoDataFixtureBeforeTransaction loadRules
      * @magentoConfigFixture current_store seo/category_metatag_generation/is_enabled 1
      * @dataProvider rulesTestCases
      */
@@ -32,11 +31,12 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
         $this->dispatch('catalog/category/view/id/778');
 
         $response = $this->getResponse()->getBody();
+        $head = $this->getHeadContents($response);
 
         $assertContains = method_exists($this, 'assertStringContainsString') ? 'assertStringContainsString' : 'assertContains';
 
-        $this->$assertContains(sprintf('<meta name="title" content="%s"', $expectedTitle), $response);
-        $this->$assertContains(sprintf('<meta name="description" content="%s"', $expectedDescription), $response);
+        $this->$assertContains(sprintf('<meta name="title" content="%s"', $expectedTitle), $head);
+        $this->$assertContains(sprintf('<meta name="description" content="%s"', $expectedDescription), $head);
     }
 
     public static function rulesTestCases()
@@ -90,5 +90,17 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
     public static function loadRulesRollback()
     {
         require __DIR__ . '/../_files/rules_rollback.php';
+    }
+
+    /**
+     * @param $response
+     * @return string
+     */
+    protected function getHeadContents($html)
+    {
+        $headPattern = '/<head[^>]*>(.*?)<\/head>/si';
+        preg_match($headPattern, $html, $results);
+
+        return $results[1];
     }
 }
