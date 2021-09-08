@@ -9,13 +9,12 @@ $registry = $objectManager->get(\Magento\Framework\Registry::class);
 $registry->unregister('isSecureArea');
 $registry->register('isSecureArea', true);
 
-$rulesIds = [1];
+$rulesCollection = $objectManager->get(\MageSuite\SeoCategoryMetatagGeneration\Model\ResourceModel\Rule\Collection::class);
 
-foreach ($rulesIds as $ruleId) {
-    $rule = $objectManager->create(\MageSuite\SeoCategoryMetatagGeneration\Model\Rule::class);
-    $rule->load($ruleId);
-
-    if ($rule->getId()) {
-        $rule->delete();
+foreach ($rulesCollection->getItems() as $rule) {
+    if (!$rule->getId()) {
+        continue;
     }
+
+    $rule->delete();
 }
