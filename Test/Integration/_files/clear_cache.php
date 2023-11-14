@@ -5,4 +5,3 @@ $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
 $cacheList = $objectManager->get(\Magento\Framework\App\Cache\TypeListInterface::class);
 $cacheList->cleanType('config');
-
