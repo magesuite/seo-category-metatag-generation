@@ -10,8 +10,8 @@ namespace MageSuite\SeoCategoryMetatagGeneration\Test\Integration\Model;
  */
 class CategoryTest extends \PHPUnit\Framework\TestCase
 {
-    protected const CATEGORY_WITHOUT_META_TAGS = 777;
-    protected const CATEGORY_WITH_META_TAGS = 778;
+    public const CATEGORY_WITHOUT_META_TAGS = 777;
+    public const CATEGORY_WITH_META_TAGS = 778;
 
     protected ?\Magento\Framework\Registry $registry;
     protected ?\Magento\Catalog\Api\CategoryRepositoryInterface $categoryRepository;

@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\SeoCategoryMetatagGeneration\Test\Integration\Controller;
 
 class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractController
 {
-    /**
-     * @var \Magento\TestFramework\ObjectManager
-     */
-    protected $objectManager;
+    protected ?\Magento\TestFramework\ObjectManager $objectManager;
 
     public function setUp(): void
     {
@@ -25,11 +24,11 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
      * @magentoConfigFixture current_store seo/category_metatag_generation/is_enabled 1
      * @dataProvider rulesTestCases
      */
-    public function testItUsesRuleSettingWhenCorrectFilterWerePassed($params, $expectedTitle, $expectedDescription)
+    public function testItUsesRuleSettingWhenCorrectFilterWerePassed(array $params, string $expectedTitle, string $expectedDescription): void
     {
         // From ElasticSuite 2.10.6 update Mapping class gets initialized too quickly before filterable attributes
-        // are put into database. This causes missing field mapping errors. We need to remove all shared instances
-        // of all ElasticSuite related classes in order for mapping to get properly regenerated when test is executed
+        // are put into a database. This causes missing field mapping errors. We need to remove all shared instances
+        // of all ElasticSuite related classes in order for mapping to get properly regenerated when the test is executed
         $this->removeElasticSuiteClassesInstances();
 
         $this->getRequest()->setParams($params);
@@ -44,7 +43,7 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
         $this->$assertContains(sprintf('<meta name="description" content="%s"', $expectedDescription), $head);
     }
 
-    public static function rulesTestCases()
+    public static function rulesTestCases(): array
     {
         return [
             'only_rule_option_was_passed' => [
@@ -58,7 +57,7 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
             'rule_more_option_was_passed' => [
                 [
                     'id' => 778,
-                    'select_attribute' => ['Option 1','Option 2']
+                    'select_attribute' => ['Option 1', 'Option 2']
                 ],
                 'Title exact parameters',
                 'Description exact parameters'
@@ -82,26 +81,22 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
         ];
     }
 
-    public static function loadRules()
+    public static function loadRules(): void
     {
         require __DIR__ . '/../_files/rules.php';
     }
 
-    public static function clearCache()
+    public static function clearCache(): void
     {
         require __DIR__ . '/../_files/clear_cache.php';
     }
 
-    public static function loadRulesRollback()
+    public static function loadRulesRollback(): void
     {
         require __DIR__ . '/../_files/rules_rollback.php';
     }
 
-    /**
-     * @param $response
-     * @return string
-     */
-    protected function getHeadContents($html)
+    protected function getHeadContents(string $html): string
     {
         $headPattern = '/<head[^>]*>(.*?)<\/head>/si';
         preg_match($headPattern, $html, $results);
@@ -109,13 +104,14 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
         return $results[1];
     }
 
-    protected function removeElasticSuiteClassesInstances() {
+    protected function removeElasticSuiteClassesInstances(): void
+    {
         $reflectionProperty = new \ReflectionProperty(\Magento\TestFramework\ObjectManager::class, '_sharedInstances');
         $reflectionProperty->setAccessible(true);
         $sharedInstances = $reflectionProperty->getValue($this->objectManager);
 
-        foreach($sharedInstances as $className => $class) {
-            if(strpos($className, 'Smile') === false) {
+        foreach ($sharedInstances as $className => $class) {
+            if (!str_contains($className, 'Smile')) {
                 continue;
             }
 
