@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\SeoCategoryMetatagGeneration\Test\Integration\Model;
 
 /**
@@ -8,18 +10,11 @@ namespace MageSuite\SeoCategoryMetatagGeneration\Test\Integration\Model;
  */
 class CategoryTest extends \PHPUnit\Framework\TestCase
 {
-    const CATEGORY_WITHOUT_META_TAGS = 777;
-    const CATEGORY_WITH_META_TAGS = 778;
+    protected const CATEGORY_WITHOUT_META_TAGS = 777;
+    protected const CATEGORY_WITH_META_TAGS = 778;
 
-    /**
-     * @var \Magento\Framework\Registry
-     */
-    protected $registry;
-
-    /**
-     * @var \Magento\Catalog\Api\CategoryRepositoryInterface
-     */
-    protected $categoryRepository;
+    protected ?\Magento\Framework\Registry $registry;
+    protected ?\Magento\Catalog\Api\CategoryRepositoryInterface $categoryRepository;
 
     public function setUp(): void
     {
@@ -37,12 +32,8 @@ class CategoryTest extends \PHPUnit\Framework\TestCase
      * @magentoConfigFixture current_store seo/category_metatag_generation/meta_title Meta Title {{category_name}}
      * @magentoConfigFixture current_store seo/category_metatag_generation/meta_description Meta Description {{category_name}}
      * @dataProvider dataProvider
-     * @param integer $categoryId
-     * @param string $expectedMetaTitle
-     * @param string $expectedMetaDescription
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function testItReturnsCorrectAttributeValue($categoryId, $expectedMetaTitle, $expectedMetaDescription)
+    public function testItReturnsCorrectAttributeValue(int $categoryId, string $expectedMetaTitle, string $expectedMetaDescription): void
     {
         $category = $this->categoryRepository->get($categoryId);
 
@@ -55,10 +46,7 @@ class CategoryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedMetaDescription, $category->getMetaDescription());
     }
 
-    /**
-     * @return array
-     */
-    public function dataProvider()
+    public static function dataProvider(): array
     {
         return [
             [self::CATEGORY_WITHOUT_META_TAGS, 'Meta Title Category without meta tags', 'Meta Description Category without meta tags'],
@@ -66,13 +54,13 @@ class CategoryTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public static function loadCategories()
+    public static function loadCategories(): void
     {
-        require __DIR__.'/../_files/categories.php';
+        require __DIR__ . '/../_files/categories.php';
     }
 
-    public static function loadCategoriesRollback()
+    public static function loadCategoriesRollback(): void
     {
-        require __DIR__.'/../_files/categories_rollback.php';
+        require __DIR__ . '/../_files/categories_rollback.php';
     }
 }
