@@ -27,7 +27,7 @@ class CategoryTest extends \PHPUnit\Framework\TestCase
      * @magentoAppArea frontend
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
-     * @magentoDataFixture loadCategories
+     * @magentoDataFixture MageSuite_SeoCategoryMetatagGeneration::Test/Integration/_files/categories.php
      * @magentoConfigFixture current_store seo/category_metatag_generation/is_enabled 1
      * @magentoConfigFixture current_store seo/category_metatag_generation/meta_title Meta Title {{category_name}}
      * @magentoConfigFixture current_store seo/category_metatag_generation/meta_description Meta Description {{category_name}}
@@ -52,15 +52,5 @@ class CategoryTest extends \PHPUnit\Framework\TestCase
             [self::CATEGORY_WITHOUT_META_TAGS, 'Meta Title Category without meta tags', 'Meta Description Category without meta tags'],
             [self::CATEGORY_WITH_META_TAGS, 'Meta title text', 'Meta description text']
         ];
-    }
-
-    public static function loadCategories(): void
-    {
-        require __DIR__ . '/../_files/categories.php';
-    }
-
-    public static function loadCategoriesRollback(): void
-    {
-        require __DIR__ . '/../_files/categories_rollback.php';
     }
 }
