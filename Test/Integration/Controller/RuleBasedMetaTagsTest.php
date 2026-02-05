@@ -19,8 +19,8 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
      * @magentoDbIsolation enabled
      * @magentoAppIsolation enabled
      * @magentoDataFixture Magento/Framework/Search/_files/filterable_attribute.php
-     * @magentoDataFixture loadRules
-     * @magentoDataFixture clearCache
+     * @magentoDataFixture MageSuite_SeoCategoryMetatagGeneration::Test/Integration/_files/rules.php
+     * @magentoDataFixture MageSuite_SeoCategoryMetatagGeneration::Test/Integration/_files/clear_cache.php
      * @magentoConfigFixture current_store seo/category_metatag_generation/is_enabled 1
      * @dataProvider rulesTestCases
      */
@@ -79,21 +79,6 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
                 'Meta description text'
             ]
         ];
-    }
-
-    public static function loadRules(): void
-    {
-        require __DIR__ . '/../_files/rules.php';
-    }
-
-    public static function clearCache(): void
-    {
-        require __DIR__ . '/../_files/clear_cache.php';
-    }
-
-    public static function loadRulesRollback(): void
-    {
-        require __DIR__ . '/../_files/rules_rollback.php';
     }
 
     protected function getHeadContents(string $html): string
