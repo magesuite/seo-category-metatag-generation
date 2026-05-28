@@ -92,7 +92,6 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
     protected function removeElasticSuiteClassesInstances(): void
     {
         $reflectionProperty = new \ReflectionProperty(\Magento\TestFramework\ObjectManager::class, '_sharedInstances');
-        $reflectionProperty->setAccessible(true);
         $sharedInstances = $reflectionProperty->getValue($this->objectManager);
 
         foreach ($sharedInstances as $className => $class) {
