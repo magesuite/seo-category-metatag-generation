@@ -31,8 +31,8 @@ class CategoryTest extends \PHPUnit\Framework\TestCase
      * @magentoConfigFixture current_store seo/category_metatag_generation/is_enabled 1
      * @magentoConfigFixture current_store seo/category_metatag_generation/meta_title Meta Title {{category_name}}
      * @magentoConfigFixture current_store seo/category_metatag_generation/meta_description Meta Description {{category_name}}
-     * @dataProvider dataProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProvider')]
     public function testItReturnsCorrectAttributeValue(int $categoryId, string $expectedMetaTitle, string $expectedMetaDescription): void
     {
         $category = $this->categoryRepository->get($categoryId);
