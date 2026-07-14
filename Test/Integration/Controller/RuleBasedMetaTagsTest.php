@@ -22,8 +22,8 @@ class RuleBasedMetaTagsTest extends \Magento\TestFramework\TestCase\AbstractCont
      * @magentoDataFixture MageSuite_SeoCategoryMetatagGeneration::Test/Integration/_files/rules.php
      * @magentoDataFixture MageSuite_SeoCategoryMetatagGeneration::Test/Integration/_files/clear_cache.php
      * @magentoConfigFixture current_store seo/category_metatag_generation/is_enabled 1
-     * @dataProvider rulesTestCases
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('rulesTestCases')]
     public function testItUsesRuleSettingWhenCorrectFilterWerePassed(array $params, string $expectedTitle, string $expectedDescription): void
     {
         // From ElasticSuite 2.10.6 update Mapping class gets initialized too quickly before filterable attributes
