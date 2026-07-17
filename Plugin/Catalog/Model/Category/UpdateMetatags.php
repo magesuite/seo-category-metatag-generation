@@ -26,10 +26,8 @@ class UpdateMetatags
         $this->keys = $keys;
     }
 
-    public function aroundGetData(\Magento\Catalog\Model\Category $subject, \Closure $proceed, $key = '', $index = null)
+    public function afterGetData(\Magento\Catalog\Model\Category $subject, $result, $key = '', $index = null)
     {
-        $result = $proceed($key, $index);
-
         if (!$this->configuration->isEnabled()) {
             return $result;
         }
